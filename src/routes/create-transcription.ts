@@ -32,7 +32,7 @@ export async function createTranscriptionRoute(app: FastifyInstance) {
     const response = await openai.audio.transcriptions.create({
       file: audioReadStream,
       model: "whisper-1",
-      language: "pt",
+      language: "en",
       response_format: "json",
       temperature: 0,
       prompt,
