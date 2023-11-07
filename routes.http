@@ -31,7 +31,7 @@ POST http://localhost:3333/ai/completion
 Content-Type: application/json
 
 {
+  "prompt": "Generate a bref summary of the following video transcription: ```{transcription}```",
   "temperature": 0.5,
-  "template": "Generate a bref summary of the following video transcription: ```{transcription}```",
   "videoId": "1b703029-4f20-4985-885d-923a5994f768"
 }

@@ -10,11 +10,11 @@ export async function generateAICompletionRoute(app: FastifyInstance) {
   app.post('/ai/completion', async (request, reply) => {
     const bodySchema = z.object({
       temperature: z.number().min(0).max(1).default(0.5),
-      template: z.string(),
+      prompt: z.string(),
       videoId: z.string().uuid(),
     });
 
-    const { temperature, template, videoId } = bodySchema.parse(request.body);
+    const { temperature, prompt, videoId } = bodySchema.parse(request.body);
 
     const video = await prisma.video.findUniqueOrThrow({
       where: {
@@ -28,7 +28,7 @@ export async function generateAICompletionRoute(app: FastifyInstance) {
       });
     }
 
-    const promptMessage = template.replace(
+    const promptMessage = prompt.replace(
       '{transcription}',
       video.transcription
     );
